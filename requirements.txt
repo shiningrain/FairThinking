@@ -1,0 +1,8 @@
+openai==0.28.0
+tiktoken==0.4.0
+tqdm
+langcodes
+backoff
+language_data
+torch
+transformers==4.36.2
