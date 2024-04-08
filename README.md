@@ -17,6 +17,11 @@ More jurors supporting the conclusion indicates a fairer consideration behind it
     - demo
     - utils
     - demo.py
+- dataset/
+    - BiasAsker
+    - Comparative_Questions
+    - General_Open-Ended_Questions
+    - Targeted_Open-Ended_Questions
 - README.md
 - requirements.txt    
 ```
@@ -48,3 +53,13 @@ This script has 8 parameters:
 3. `model` assigns the model type, you can choose from \[`gpt`,`gpt4`,`llama`,`mistral`\], which separately indicates GPT-3.5-Turbo, GPT-4-Turbo, Llama 2, Mistral.
 4. `jury` is the jury number you want to set, which is defaulted to be `6`.
 5. `config_path`, `attribute`, `gpu_list`, and `repeat` do not require to config.
+
+
+## Dataset
+We provide the whole dataset in this [directory](./dataset).
+The sub-directories separately show the `BiasAsker`, `Comparative Questions`, `Targeted Open-Ended Questions`, and `General Open-Ended Questions` datasets.
+
+1. `question.pkl` directly stores questions as a list (open-ended questions are stored in a `.csv` file).
+2. `xx-roles` refers to the role information corresponding to the question of index `xx` in the list.
+    1. The `attribute_list.pkl` stores the role information of the debaters.
+    2. The `jury_list.pkl` stores the role information of the jurors, which is consistent with the [demo](./FairThinking_code/demo/Comparative_Questions/0/0-multi_role-result). 
