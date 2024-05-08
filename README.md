@@ -7,7 +7,6 @@ We propose FairThinking, an automated multi-agent pipeline designed to enhance a
 An overseeing clerk guides the debate throughout, ensuring it moves toward a conclusion that is both inclusive and fair. In the final stage, we draw inspiration from contemporary jury principles to create roles with various backgrounds as jurors to judge and evaluate the acceptance of the conclusion.
 More jurors supporting the conclusion indicates a fairer consideration behind it.
 
-*Note that FairThinking is still a prototype, and we will keep improving it and our dataset.*
 
 
 ## Repo Structure
