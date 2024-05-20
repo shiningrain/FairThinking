@@ -49,16 +49,34 @@ class Agent:
         assert self.model_name in support_models, f"Not support {self.model_name}. Choices: {support_models}"
         try:
             if self.model_name in support_models:
-                response = openai.ChatCompletion.create(
-                    model=self.model_name,
+                if self.model_name=='gpt-3.5-turbo':
+                    response = openai.ChatCompletion.create(
+                    model= 'gpt-3.5-turbo-1106',
                     messages=messages,
                     temperature=temperature,
                     max_tokens=max_tokens,
                     api_key=api_key,
                     request_timeout=90,#timeout=90, in 1.x
-                )
+                    )
+                    print('using 1106')
+                else:
+                    response = openai.ChatCompletion.create(
+                        model=self.model_name,
+                        messages=messages,
+                        temperature=temperature,
+                        max_tokens=max_tokens,
+                        api_key=api_key,
+                        request_timeout=90,#timeout=90, in 1.x
+                    )
                 gen = response['choices'][0]['message']['content']
             return gen
+        # except RateLimitError as e:
+        #     if "You exceeded your current quota, please check your plan and billing details" in e.user_message:
+        #         raise OutOfQuotaException(api_key)
+        #     elif "Your access was terminated due to violation of our policies" in e.user_message:
+        #         raise AccessTerminatedException(api_key)
+        #     else:
+        #         raise e
         except Exception as e:
             time.sleep(60)
             if self.model_name in support_models:

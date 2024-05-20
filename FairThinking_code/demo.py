@@ -28,7 +28,7 @@ def read_topics(topic_path):
 def parse_args():
     parser = argparse.ArgumentParser("", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     # ./demo/Comparative_Questions/0/question.pkl
-    parser.add_argument("-tp", "--topic_path", default='./demo/Targeted_Open-Ended_Questions/topics.csv', type=str, help="Input file, can be 'pkl' or 'csv'")
+    parser.add_argument("-tp", "--topic_path", default='../dataset/Targeted_Open-Ended_Questions/topics.csv', type=str, help="Input file, can be 'pkl' or 'csv'")
     parser.add_argument("-od", "--output_dir", default='./demo_result/Type2/0', type=str, help="Output file dir")
     parser.add_argument("-cp", "--config_path", default='./config/debate_config.json', type=str, help="config")
     parser.add_argument("-at", "--attribute", default='generator', type=str, help="the role of each member:generator/debater(ablation, no role)/identity(ablation, only identity)")#-Asian woman-Latin American man
@@ -69,6 +69,7 @@ if __name__ == "__main__":
             total_topic+=tmp_topic
     elif '.csv' in args.topic_path:
         total_topic=read_topics(args.topic_path)
+        topic_dir=os.path.join(topic_dir,'roles')
     else:
         print('not support input!!')
         os._exit(0)
@@ -84,8 +85,8 @@ if __name__ == "__main__":
         debate_topic=total_topic[i]
         print(debate_topic)
         for j in range(int(args.repeat)):
-            tmp_save_dir=os.path.join(topic_dir,f'{i}-multi_role-result')
-            tmp_result_dir=os.path.join(save_dir,f'{i}-multi_role-result')
+            tmp_save_dir=os.path.join(topic_dir,f'{i}-roles')
+            tmp_result_dir=os.path.join(save_dir,f'{i}-roles')
             print(tmp_result_dir)
             # os._exit(0)
             if not os.path.exists(tmp_save_dir):
